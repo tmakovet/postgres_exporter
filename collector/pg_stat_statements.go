@@ -115,10 +115,10 @@ var (
 )
 
 func (PGStatStatementsCollector) Update(ctx context.Context, instance *instance, ch chan<- prometheus.Metric) error {
-	query := pgStatStatementsQuery
-	if instance.version.GE(semver.MustParse("13.0.0")) {
-		query = pgStatStatementsNewQuery
-	}
+	query := pgStatStatementsNewQuery
+//	if instance.version.GE(semver.MustParse("13.0.0")) {
+//		query = pgStatStatementsNewQuery
+//	}
 
 	db := instance.getDB()
 	rows, err := db.QueryContext(ctx, query)
